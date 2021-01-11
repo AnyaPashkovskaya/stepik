@@ -15,6 +15,7 @@ def browser(request):
     options = Options()
     user_browser = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
+    print("i in --language")
     if user_browser=='chrome':
         print("\nstart chrome browser for test..")
         browser = webdriver.Chrome()
