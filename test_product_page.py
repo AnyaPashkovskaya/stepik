@@ -2,6 +2,7 @@ from .pages.main_page import MainPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
+from .pages.locators import Urls
 import pytest
 import time
 
@@ -21,47 +22,39 @@ class TestUserAddToBasketFromProductPage:
 
 
 	def test_user_cant_see_success_message(self, browser):
-		link = "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/"
-		page = ProductPage(browser, link)
+		page = ProductPage(browser, Urls.LINK_BOOK)
 		page.open()
 		page.should_not_be_success_message()
   
-	@pytest.mark.xfail
 	@pytest.mark.need_review
 	def test_user_can_add_product_to_basket(self, browser):
-		link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-		page = ProductPage(browser, link)
+		page = ProductPage(browser, Urls.PROMO_LINK)
 		page.open()
 		page.should_be_message_about_add_new_product()
 
 
 
-@pytest.mark.xfail
+
 @pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
-	link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-	page = ProductPage(browser, link)
+	page = ProductPage(browser, Urls.PROMO_LINK)
 	page.open()
 	page.should_be_message_about_add_new_product()
-	page.should_dissepeard_message_after_adding_basket()
 
 def test_guest_should_see_login_link_on_product_page(browser):
-	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-	page = ProductPage(browser, link)
+	page = ProductPage(browser, Urls.LINK_BOOK)
 	page.open()
 	page.should_be_login_link()
 
 @pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
-	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-	page = MainPage(browser, link)
+	page = MainPage(browser, Urls.LINK_BOOK)
 	page.open()
 	page.go_to_login_page()
 
 @pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
-	link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-	page = ProductPage(browser, link)
+	page = ProductPage(browser, Urls.LINK_BOOK)
 	page.open()
 	page.should_see_button_basket_view()
 	page.go_to_basket_view() 
