@@ -16,7 +16,9 @@ class LoginPageLocators():
 	REGISTRATION_PASSWORD2 = (By.CSS_SELECTOR, "#id_registration-password2")
 	REGISTRATION_BUTTON =  (By.CSS_SELECTOR, "[name=registration_submit]")
 
-
+class Urls():
+	PROMO_LINK = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+	LINK_BOOK = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 class ProductPageLocators():
 	BUTTON_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
